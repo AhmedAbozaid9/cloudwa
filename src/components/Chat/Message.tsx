@@ -3,18 +3,16 @@ import React from "react";
 
 interface MessageProps {
   message: string;
-  user: string;
+  isSender: boolean;
 }
 
-const Message = ({ message, user }: MessageProps) => {
-  const isMe = user === "me";
-
+const Message = ({ message, isSender }: MessageProps) => {
   return (
     <motion.div
       className={`flex items-center ${
-        isMe ? "justify-end" : "justify-start"
+        isSender ? "justify-end" : "justify-start"
       } my-3`}
-      initial={{ opacity: 0, x: isMe ? 50 : -50 }}
+      initial={{ opacity: 0, x: isSender ? 50 : -50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
@@ -22,7 +20,7 @@ const Message = ({ message, user }: MessageProps) => {
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         className={`px-6 py-4 rounded-2xl shadow-lg ${
-          isMe
+          isSender
             ? "bg-gradient-to-r from-purple-500 to-purple-700 text-white rounded-br-none"
             : "bg-gradient-to-r from-gray-700 to-gray-800 text-gray-200 rounded-bl-none"
         } max-w-2xl w-3/4 md:w-1/2 lg:w-1/3`}
