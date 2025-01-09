@@ -7,7 +7,8 @@ function authRequestInterceptor(config: {
   config.headers.authorization = `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`;
   config.params = {
     ...(config.params || {}),
-    session_uuid: "9b6fcf1c-efbe-4c3d-925c-cb3b24131c67",
+    session_uuid: process.env.NEXT_PUBLIC_SESSION_UUID,
+    chat_id: process.env.NEXT_PUBLIC_CHAT_ID,
   };
   config.headers.Accept = "application/json";
   return config;
