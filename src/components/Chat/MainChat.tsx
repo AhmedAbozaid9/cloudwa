@@ -24,7 +24,7 @@ const MainChat = () => {
   ];
   return (
     <div>
-      <div>
+      <div className="h-[calc(100vh-100px)] overflow-y-scroll scrollbar-hide">
         {fakeMessages.map((message, index) => (
           <Message key={index} message={message.message} user={message.user} />
         ))}
