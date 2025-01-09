@@ -7,12 +7,12 @@ export interface ReturnedMessageTypes {
   reply_to_message_id: number | null;
   contact_id: number | null;
   campaign_id: number | null;
-  data: any[];
+  data: unknown[];
   schedule_at: string;
   urgency: string;
   status: string;
   type: string;
-  template_parameters: any | null;
+  template_parameters: unknown | null;
   message: string;
   phone: string;
   image: string | null;

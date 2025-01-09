@@ -20,10 +20,9 @@ const MainChat = () => {
   const queryClient = useQueryClient();
 
   const [didReceiveNewMessage, setDidReceiveNewMessage] = useState(false);
-  const [isAtBottom, setIsAtBottom] = useState(true); // Track if the user is at the bottom
+  const [isAtBottom, setIsAtBottom] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const chatContainerRef = useRef<HTMLDivElement>(null); // Ref for the chat container
-
+  const chatContainerRef = useRef<HTMLDivElement>(null);
   const handleSendMessage = async (message: string) => {
     try {
       const sentMessage = await sendMessage(message);
@@ -52,11 +51,11 @@ const MainChat = () => {
       "private-session.9b6fcf1c-efbe-4c3d-925c-cb3b24131c67"
     );
 
-    channel.bind("wa_message", (data: any) => {
-      queryClient.setQueryData(["messages"], (oldMessages: any) => [
-        ...oldMessages,
-        data.payload,
-      ]);
+    channel.bind("wa_message", (data: { payload: ChatMessageTypes[] }) => {
+      queryClient.setQueryData(
+        ["messages"],
+        (oldMessages: ChatMessageTypes[]) => [...oldMessages, data.payload]
+      );
       setDidReceiveNewMessage(true);
     });
 

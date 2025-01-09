@@ -2,7 +2,7 @@ import Axios from "axios";
 
 function authRequestInterceptor(config: {
   headers: { authorization: string; Accept: string };
-  params?: Record<string, any>;
+  params?: Record<string, unknown>;
 }) {
   config.headers.authorization = `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`;
   config.params = {
@@ -18,7 +18,7 @@ export const axios = Axios.create({
   baseURL: "https://cloudwa.net/api/v2/",
 });
 
-axios.interceptors.request.use(authRequestInterceptor as any);
+axios.interceptors.request.use(authRequestInterceptor as never);
 axios.interceptors.response.use(
   (response) => {
     return response;

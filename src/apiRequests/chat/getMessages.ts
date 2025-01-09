@@ -12,7 +12,7 @@ export interface ChatMessageTypes {
     ack: number;
     invisible: boolean;
     star: boolean;
-    [key: string]: any;
+    [key: string]: unknown;
   };
   quoted_message: string | null;
   row_id: number;
