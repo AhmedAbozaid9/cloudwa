@@ -10,7 +10,7 @@ function authRequestInterceptor(config: {
 }
 
 export const axios = Axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: "https://cloudwa.net/api/v2/",
 });
 
 axios.interceptors.request.use(authRequestInterceptor as any);
