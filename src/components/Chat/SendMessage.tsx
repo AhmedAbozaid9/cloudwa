@@ -1,11 +1,24 @@
 import { SendHorizonal } from "lucide-react";
 import React from "react";
 
-const SendMessage = () => {
+interface SendMessageProps {
+  handleSendMessage: (message: string) => Promise<void>;
+}
+
+const SendMessage = ({ handleSendMessage }: SendMessageProps) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await handleSendMessage(e.currentTarget.message.value);
+    e.currentTarget.message.value = "";
+  };
   return (
-    <form className="absolute  bottom-8 left-0 right-0 flex items-center gap-3 bg-neutral-900 p-2 rounded-full shadow-md w-full max-w-5xl mx-auto">
+    <form
+      onSubmit={handleSubmit}
+      className="absolute  bottom-8 left-0 right-0 flex items-center gap-3 bg-neutral-900 p-2 rounded-full shadow-md w-full max-w-5xl mx-auto"
+    >
       <input
         type="text"
+        name="message"
         className="flex-grow bg-neutral-800 text-white rounded-full outline-none px-4 py-2 placeholder-gray-400 focus:ring-2 focus:ring-purple-500"
         placeholder="Write a message..."
       />

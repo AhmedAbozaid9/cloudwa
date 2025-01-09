@@ -1,5 +1,6 @@
 "use client";
 import { getMessages } from "@/apiRequests/chat/getMessages";
+import { sendMessage } from "@/apiRequests/chat/sendMessage";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import Message from "./Message";
@@ -22,6 +23,13 @@ const MainChat = () => {
     { user: "me", message: "Not yet, but thanks for offering!" },
     { user: "you", message: "No problem! Let me know if you do." },
   ];
+  const handleSendMessage = async (message: string) => {
+    try {
+      await sendMessage(message);
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
+  };
   return (
     <div>
       <div className="h-[calc(100vh-100px)] overflow-y-scroll scrollbar-hide">
@@ -29,7 +37,7 @@ const MainChat = () => {
           <Message key={index} message={message.message} user={message.user} />
         ))}
       </div>
-      <SendMessage />
+      <SendMessage handleSendMessage={handleSendMessage} />
     </div>
   );
 };
