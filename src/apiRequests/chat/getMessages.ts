@@ -1,6 +1,6 @@
 import { axios } from "@/lib/axios";
 
-interface ChatMessage {
+export interface ChatMessageTypes {
   body: string;
   caption: string | null;
   chat_id: string;
@@ -27,7 +27,7 @@ interface ChatMessage {
   type: string;
 }
 
-export async function getMessages(): Promise<ChatMessage[]> {
+export async function getMessages(): Promise<ChatMessageTypes[]> {
   const response = await axios.get("/messages");
   return response.data;
 }
