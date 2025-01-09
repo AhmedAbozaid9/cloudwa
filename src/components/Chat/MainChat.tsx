@@ -10,10 +10,25 @@ const MainChat = () => {
     queryKey: ["messages"],
     queryFn: getMessages,
   });
-  console.log(messages);
+  const fakeMessages = [
+    { user: "me", message: "Hello, world!" },
+    { user: "you", message: "Hi there!" },
+    { user: "me", message: "How are you doing today?" },
+    { user: "you", message: "I'm good, thanks! What about you?" },
+    { user: "me", message: "I'm doing great. Just working on some code." },
+    { user: "you", message: "Nice! What are you building?" },
+    { user: "me", message: "A chat app, actually!" },
+    { user: "you", message: "That's awesome. Need any help?" },
+    { user: "me", message: "Not yet, but thanks for offering!" },
+    { user: "you", message: "No problem! Let me know if you do." },
+  ];
   return (
     <div>
-      <Message />
+      <div>
+        {fakeMessages.map((message, index) => (
+          <Message key={index} message={message.message} user={message.user} />
+        ))}
+      </div>
       <SendMessage />
     </div>
   );
